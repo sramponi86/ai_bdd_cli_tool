@@ -1,18 +1,18 @@
-Here are three BDD test scenarios for the domestic payment process feature:
+Here are three BDD test scenarios for the feature "Perform foreign transaction on ebanking portal" in Gherkin-style:
 
-Feature: domestic payment process
+Feature: Perform foreign transaction on ebanking portal
 
-Scenario: Successful Payment
-  Given a user is logged into their account with valid login credentials
-  When they initiate a payment transaction using their stored payment method
-  Then the payment should be processed successfully and the order should be confirmed
+Scenario: Successful Foreign Transaction
+  Given a user with valid login credentials and sufficient balance to perform a foreign transaction
+  When the user initiates a foreign transaction on the ebanking portal
+  Then the transaction is successfully processed, and the updated balance reflects the foreign exchange rate difference
 
-Scenario: Invalid Payment Method
-  Given a user is logged into their account with valid login credentials but an invalid payment method
-  When they attempt to initiate a payment transaction
-  Then an error message should be displayed indicating that the payment method is not supported
+Scenario: Insufficient Balance for Foreign Transaction
+  Given a user with invalid login credentials or insufficient balance to perform a foreign transaction
+  When the user attempts to initiate a foreign transaction on the ebanking portal
+  Then an error message is displayed indicating the user lacks sufficient funds for the transaction
 
-Scenario: Insufficient Funds
-  Given a user is logged into their account with a low account balance (e.g. $10)
-  When they initiate a payment transaction using a payment method that exceeds their available funds (e.g. $100)
-  Then an error message should be displayed indicating that insufficient funds are unavailable
+Scenario: Error in Currency Conversion
+  Given a user with valid login credentials and sufficient balance, but incorrect currency code selected for conversion
+  When the user initiates a foreign transaction on the ebanking portal using the incorrect currency code
+  Then an error message is displayed indicating that the selected currency code is invalid
